@@ -1,0 +1,23 @@
+<h1>Create a new playlist</h1>
+{% extends 'home.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<form action="" method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.name.label }} {{ form.name() }}
+	{{ form.track_picks.label }} {{ form.track_picks() }}
+	{{ form.submit.label }}{{ form.submit() }}
+</form>
+
+<div>
+	{% for message in get_flashed_messages() %}
+	{{ message }}
+	{% endfor %}
+</div>
+
+{% endblock %}

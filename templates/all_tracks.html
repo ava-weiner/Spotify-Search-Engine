@@ -1,0 +1,33 @@
+<h1> All Tracks </h1>
+{% extends 'home.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+<ul>
+{% for t in tracks %}
+<li>
+  <strong>{{ t[0] }}</strong><i> by {{ t[1] }}</i>
+  <br>
+  <iframe src="{{ t[2] }}" frameborder="0" allowfullscreen allowtransparency="true"></iframe><br><br>
+  <form method="POST" action="/delete/{{ t[0] }}">
+    {{ formdel.hidden_tag() }}
+      {{ formdel.submit() }}
+   </form>
+</li>
+<br>
+{% endfor %}
+</ul>
+
+{% if not tracks %}
+There are no saved tracks to show.
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+{% endblock %}

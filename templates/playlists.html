@@ -1,0 +1,17 @@
+<h1>My Playlists</h1>
+
+{% extends 'home.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<ul>
+{% for p in playlists %}
+    <li><a href="http://localhost:5000/playlist/{{ p.id }}">{{ p.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

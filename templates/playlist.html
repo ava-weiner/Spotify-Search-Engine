@@ -1,0 +1,19 @@
+<h1>{{ playlist.name }}</h1>
+{% extends 'home.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+<ul>
+{% for t in tracks %}
+    <li>
+      <strong>{{ t.title }}</strong>
+      </br>
+      <iframe src='https://open.spotify.com/embed?uri={{ t.uri }}' width="144" height="81" frameBorder="0" ></iframe>
+    <br><br> </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

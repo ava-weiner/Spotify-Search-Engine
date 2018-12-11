@@ -1,0 +1,52 @@
+<h1> Search Spotify for Tracks </h1>
+{% extends 'home.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<form action="" method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.search.label }} {{ form.search() }}
+	{{ form.submit() }}
+</form>
+
+<button onClick="runAJAX()">Most popular song</button>
+<div>
+	{% for message in get_flashed_messages() %}
+	{{ message }}
+	{% endfor %}
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+function runAJAX () {
+	$.ajax({
+	  url: "/ajax",
+		dataType: "json"
+	}).done(function( data ) {
+			$.each(data, function(index, value) {
+	    $("<p>"+ value + "</p>").appendTo($('div'))
+			});
+	  });
+	}
+</script>
+
+{% if results %}
+<ul>
+{% for t in results %}
+<li>
+  <h4>{{ t[0] }}</h4>
+  <br>
+  <iframe src="{{ t[1] }}" frameborder="0" allowfullscreen allowtransparency="true"></iframe>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% if not results %}
+<br><br><strong>Search to find tracks.</strong>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<h1> Search Spotify for Artists </h1>
+{% extends 'home.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<form action="{{ url_for('artist_results') }}" method="GET">
+	{{ form.hidden_tag() }}
+	{{ form.artist.label }} {{ form.artist() }} <br><br>
+  {{ form.rating.label }} {{ form.rating() }} <br><br>
+	{{ form.submit() }}
+</form>
+
+{% endblock %}

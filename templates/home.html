@@ -1,0 +1,37 @@
+{% block main_content %}
+<h1>Welcome to the Spotify search app!</h1>
+
+<h2>{{ songs }} tracks, {{ artists }} artists saved.</h2>
+
+<div>
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+</div>
+
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('logout') }}">Sign Out {{current_user.username}}</a>
+{% else %}
+    <a href="{{ url_for('login') }}">Sign In</a>
+{% endif %}
+<br>
+
+{% endblock %}
+
+
+
+
+
+{% block navigation %}
+<p>--------</p>
+<ul><i>
+    <li><a href="{{ url_for('home_page') }}">Home</a>
+    <li><a href="{{ url_for('track_search') }}">Search for tracks</a>
+    <li><a href="{{ url_for('artist_search') }}">Search for an artist</a></li>
+    <li><a href="{{ url_for('all_tracks') }}">See all saved tracks</a></li>
+    <li><a href="{{ url_for('all_artists') }}">See all saved artists</a></li>
+    <li><a href="{{ url_for('create_playlist') }}">Create a personal playlist</a></li>
+    <li><a href="{{ url_for('playlists') }}">See your playlists</a></li></li></i>
+</ul>
+
+{% endblock %}

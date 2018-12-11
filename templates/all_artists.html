@@ -1,0 +1,33 @@
+<h1> All Artists </h1>
+{% extends 'home.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+<ul>
+{% for a in artists %}
+<li>
+  <h4>{{ a.name }}</h4>
+  <iframe src={{ a.image_url }} width="144" height="81" frameBorder="0" ></iframe>
+  <br><br><strong>Rating: </strong>{{ a.rating }}
+  <form method="POST" action="/update/{{ a.name }}">
+    {{ form.hidden_tag() }}
+      {{ form.submit() }}
+   </form>
+</li>
+<br>
+{% endfor %}
+</ul>
+
+{% if not artists %}
+There are no saved artists to show.
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+{% endblock %}

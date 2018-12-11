@@ -1,0 +1,18 @@
+<h1> Artist Result </h1>
+{% extends 'home.html' %}
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+  <h4>{{ artist_info[0] }}</h4>
+  <iframe src={{ artist_info[1] }} width="144" height="81" frameBorder="0" ></iframe>
+<br>
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+{% endblock %}
